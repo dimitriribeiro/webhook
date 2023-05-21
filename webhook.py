@@ -47,7 +47,7 @@ def login():
     return redirect('/')
 
 
-@app.route('/validandocadastro', methods=['GET', 'POST'], titulo='Resultado do cadastro')
+@app.route('/validandocadastro', methods=['GET', 'POST'])
 def validandocadastro():
     global dataset_login
     if request.method == 'POST':
@@ -72,7 +72,7 @@ def validandocadastro():
             novo_dataset.to_csv('base_dados/base_dados_logins.csv', index=False)
             linhas_totais += 1
 
-            return render_template('cadastrar.html', resultado='Cadastro efetuado com sucesso!')
+            return render_template('cadastrar.html', resultado='Cadastro efetuado com sucesso!', titulo='Webhook')
 
         else:
             # Credenciais inválidas, exibir mensagem de erro
@@ -81,9 +81,9 @@ def validandocadastro():
     return redirect('/')
 
 
-@app.route('/resultado_login', titulo='Resultado Login')
+@app.route('/resultado_login')
 def resultado_login():
-    return render_template('resultado_login.html')
+    return render_template('resultado_login.html', titulo='Resultado Login')
 
 
 @app.route('/dadosapiwh')
