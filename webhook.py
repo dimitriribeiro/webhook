@@ -47,7 +47,7 @@ def login():
     return redirect('/')
 
 
-@app.route('/validandocadastro', methods=['GET', 'POST'])
+@app.route('/validandocadastro', methods=['GET', 'POST'], titulo='Resultado do cadastro')
 def validandocadastro():
     global dataset_login
     if request.method == 'POST':
@@ -81,7 +81,7 @@ def validandocadastro():
     return redirect('/')
 
 
-@app.route('/resultado_login')
+@app.route('/resultado_login', titulo='Resultado Login')
 def resultado_login():
     return render_template('resultado_login.html')
 
