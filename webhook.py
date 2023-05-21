@@ -32,9 +32,9 @@ def login():
     if request.method == 'POST':
         usuario = request.form['email']
         senha = request.form['senha']
-        print(usuario)
-        print(senha)
-        print(dataset_login['senha'])
+        if usuario == '' and senha == '':
+            flash('Usuário ou senha inválidos', 'error')
+            return render_template('resultado_login.html')
         if usuario in MASTER and MASTER[usuario] == senha:
             # Autenticação bem-sucedida, redirecionar para a página inicial
             return redirect(url_for('dadosapiwh'))
