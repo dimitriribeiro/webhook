@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+    <main>
+        <section class="container">
+            <form action="/login" method="post" id="login">
+
+                {% for etiqueta in labels_forms %}
+                <div class="form-group">
+                    <label>
+                        {{etiqueta|title}}:
+                    </label>
+                    <input type="text" id="{{etiqueta}}" name="{{etiqueta}}" placeholder="Digite aqui" class="form-control">
+                </div>
+                {% endfor %}
+                <input type="submit" value="{{ botao }}" class="btn btn-primary btn-salvar">
+            </form>
+            <script>
+                document.getElementById('cadastro').addEventListener('submit', () => {
+                    event.preventDefault();
+
+                    Swal.fire({
+                        title: 'Digite o login corretamente!',
+                        icon: 'error',
+                        timer: 100000
+                    });
+                });
+            </script>
+        </section>
+    </main>
+
+{% endblock %}

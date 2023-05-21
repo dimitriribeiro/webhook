@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+    <main>
+        <section class="container">
+            <form action="/validandocadastro" method="post" id="cadastro">
+
+                {% for etiqueta in labels_forms %}
+                <div class="form-group">
+                    <label class="">
+                        {{etiqueta|title}}:
+                    </label>
+                    <input type="text" id="{{etiqueta}}" name="{{etiqueta}}" placeholder="Digite aqui" class="form-control">
+                </div>
+                {% endfor %}
+                <input type="submit" value="{{ botao }}" class="btn btn-primary btn-salvar">
+            </form>
+            <h1>{{ resultado }}</h1>
+
+        </section>
+    </main>
+
+{% endblock %}

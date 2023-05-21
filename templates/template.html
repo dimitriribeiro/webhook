@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>{{ titulo }}</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header class="container">
+        <nav class="page-header">
+            <a href="/">Webhook</a>
+            <a href="/">Login</a>
+            <a href="/cadastrar">Cadastro</a>
+        </nav>
+    </header>
+
+    {% block conteudo %}]
+    {% endblock %}
+
+    <footer class="bg-dark text-center text-white">
+        Desenvolido por Yuri Dimitri
+    </footer>
+</body>
+</html>
