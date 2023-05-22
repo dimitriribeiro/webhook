@@ -32,13 +32,15 @@ def login():
     if request.method == 'POST':
         usuario = request.form['email']
         senha = request.form['senha']
-        if usuario == '' and senha == '':
-            flash('Usuário ou senha inválidos', 'error')
-            return render_template('resultado_login.html')
+        try:
+            user_existe = (dataset_login['email'].values == usuario)
+            senha_valida = (dataset_login['senha'].values == senha)
+
+        except:
+            pass
         if usuario in MASTER and MASTER[usuario] == senha:
-            # Autenticação bem-sucedida, redirecionar para a página inicial
             return redirect(url_for('dadosapiwh'))
-        elif (dataset_login['email'] == usuario).value_counts()[0] == 1 and (dataset_login['senha'] == senha).value_counts()[0] == 1:
+        if user_existe and senha_valida:
             return redirect(url_for('dadosapiwh'))
         else:
             # Credenciais inválidas, exibir mensagem de erro
@@ -72,7 +74,7 @@ def validandocadastro():
             novo_dataset.to_csv('base_dados/base_dados_logins.csv', index=False)
             linhas_totais += 1
 
-            return render_template('cadastrar.html', resultado='Cadastro efetuado com sucesso!', titulo='Webhook')
+            return render_template('sucesso_cadastro.html', resultado='Cadastro efetuado com sucesso!', titulo='Webhook')
 
         else:
             # Credenciais inválidas, exibir mensagem de erro
